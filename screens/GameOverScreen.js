@@ -1,12 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, Button, Image } from 'react-native';
+
+import BodyText from '../components/BodyText';
+import TitleText from '../components/TitleText';
 
 const GameOverScreen = props => {
   return (
     <View style={styles.screen}>
-      <Text>The Game is Over!</Text>
-      <Text>Number of rounds: {props.roundsNumber}</Text>
-      <Text>Number was: {props.userNumber}</Text>
+      <TitleText>The Game is Over!</TitleText>
+      <View style={styles.imageContainer}>
+        <Image
+          // source={require('../assets/success.png')}
+          source={{
+            uri:
+              'https://ichef.bbci.co.uk/news/660/cpsprodpb/10869/production/_107098676_1c45dac3-bf7e-4663-bdec-099ec9d8e199.jpg'
+          }}
+          fadeDuration={100}
+          style={styles.image}
+          resizeMode="cover"
+        />
+      </View>
+      <BodyText>Number of rounds: {props.roundsNumber}</BodyText>
+      <BodyText>Number was: {props.userNumber}</BodyText>
       <Button title="NEW GAME" onPress={props.onRestart} />
     </View>
   );
@@ -17,6 +32,21 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  imageContainer: {
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+    borderWidth: 3,
+    borderColor: 'black',
+    overflow: 'hidden',
+    marginVertical: 30
+  },
+  image: {
+    // This settings are required for web images
+    // For local images RN uses the default, but can overwritten
+    width: '100%',
+    height: '100%'
   }
 });
 
